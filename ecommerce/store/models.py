@@ -11,12 +11,25 @@ class Customer(models.Model):
 	def __str__(self):
 		return self.name
 
-
 class Product(models.Model):
+	CATEGORY = (
+			('Refrigerante', 'Refrigerante'),
+			('Frenos', 'Frenos'),
+			('Baterías', 'Baterías'),
+			('Sellador', 'Sellador'),
+			) 
+
+
 	name = models.CharField(max_length=200)
+	cod = models.CharField(max_length=7, null=True, blank=True)
+	brand = models.CharField(max_length=50, null=True, blank=True)
+	category = models.CharField(max_length=200, null=True, choices=CATEGORY)
 	price = models.FloatField()
-	digital = models.BooleanField(default=False,null=True, blank=True)
+	description = models.CharField(max_length=200, null=True, blank=True)
 	image = models.ImageField(null=True, blank=True)
+	date_created = models.DateTimeField(auto_now_add=True, null=True)
+	
+	
 
 	def __str__(self):
 		return self.name
