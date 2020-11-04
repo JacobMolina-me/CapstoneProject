@@ -6,11 +6,7 @@ from django.contrib.auth.models import User
 class Customer(models.Model):
 	user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE, verbose_name="Usuario")
 	name = models.CharField(max_length=200, null=True, verbose_name="Nombre")
-	ape = models.CharField(max_length=200, null=True, verbose_name="Apellido")
-	dni = models.CharField(max_length=7, null=True, verbose_name="DNI")
-	phone = models.CharField(max_length=200, null=True, verbose_name="Celular")
-	email = models.CharField(max_length=200, verbose_name="Correo electrónico")
-
+	
 
 	def __str__(self):
 		return self.name
@@ -110,8 +106,8 @@ class ShippingAddress(models.Model):
 	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, verbose_name="Cliente")
 	order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True, verbose_name="Orden")
 	address = models.CharField(max_length=200, null=False, verbose_name="Dirección")
-	city = models.CharField(max_length=200, null=False, verbose_name="Ciudad")
-	state = models.CharField(max_length=200, null=False, verbose_name="Estado")
+	city = models.CharField(max_length=200, null=False, verbose_name="Distrito")
+	state = models.CharField(max_length=200, null=False, verbose_name="Provincia")
 	zipcode = models.CharField(max_length=200, null=False, verbose_name="Código postal")
 	date_added = models.DateTimeField(auto_now_add=True,verbose_name="Fecha agregada")
 
